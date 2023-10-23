@@ -37,7 +37,7 @@ This project is tightly integrated with the [Social Media API](https://github.co
 1. Clone this repository to your local machine.
 2. Run `npm install` to install the required dependencies.
 3. Update the API URL in the project to point to your API backend.
-4. Run `npm start` to start the development server.
+4. Run `npm run dev` to start the development server.
 
 ## Usage
 1. Sign in or sign up to access your account.
