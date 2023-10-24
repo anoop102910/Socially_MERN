@@ -4,7 +4,7 @@ import { api } from "../../api";
 import { useDispatch } from "react-redux";
 import { checkAuthentication } from "../../slice/authSlice";
 import { useNavigate } from "react-router-dom";
-import authImage from "/home/anoop4735/Desktop/Projects/Frontend/src/assets/authImage.png";
+import authImage from "../../assets/authImage.png"
 
 function Signin() {
   const [formData, setFormData] = useState({

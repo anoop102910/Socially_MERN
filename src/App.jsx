@@ -3,7 +3,6 @@ import Layout from "./components/Layout";
 import Home from "./components/Home";
 import Signin from "./components/auth/Signin";
 import Signup from "./components/auth/Signup";
-import { useSelector } from "react-redux";
 import ProtectedRoute from "./components/ProtectedRoute";
 import HomeLayout from "./components/HomeLayout";
 import UserList from "./components/Follow/UserList";
@@ -19,7 +18,6 @@ function App() {
             <Route path="/" element={<HomeLayout />}>
               <Route path="/" element={<Home />} />
               <Route path="/user" element={<UserList />} />
-              <Route path="/profile" element={<UserProfile />} />
             </Route>
           </Route>
           <Route path="signin" element={<Signin />} />

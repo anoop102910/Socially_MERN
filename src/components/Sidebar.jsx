@@ -18,7 +18,7 @@ const Sidebar = ({ className }) => {
             <i className="fas fa-envelope" />
             <span>Message</span>
           </Link>
-          <Link to={'/profile'} className="w-full py-2 pl-3 hover:bg-gray-100 text-gray-600 rounded-md flex gap-x-3 items-center">
+          <Link to={'/'} className="w-full py-2 pl-3 hover:bg-gray-100 text-gray-600 rounded-md flex gap-x-3 items-center">
             <i className="fas fa-user" />
             <span>Profile</span>
           </Link>
