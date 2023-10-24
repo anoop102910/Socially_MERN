@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { api } from "../../api";
 import { useDispatch } from "react-redux";
 import { checkAuthentication } from "../../slice/authSlice";
-import authImage from "/home/Desktop/Projects/Frontend/src/assets/authImage.png"
+import authImage from "../../assets/authImage.png"
 
 import { useNavigate } from "react-router-dom";
 function Signup() {
