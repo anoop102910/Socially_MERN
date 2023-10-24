@@ -12,6 +12,8 @@ import "react-toastify/dist/ReactToastify.css"; // Import the CSS for styling.
 import UserProfile from "./components/Profile/UserProfile";
 
 function App() {
+  // const authStatus = useSelector(state=>state.auth.status);
+  // if(authStatus==='loading') return <h1>Laoding/...</h1>
   return (
     <>
       <Routes>

@@ -5,11 +5,14 @@ import { PulseLoader } from "react-spinners";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../../slice/postSlice";
 import { PostLoader } from "./PostLoader";
+import { checkAuthentication } from "../../slice/authSlice";
 
 function Post() {
   const status = useSelector(state => state.post.status);
   const dispatch = useDispatch();
+  
   useEffect(() => {
+    dispatch(checkAuthentication());
     dispatch(fetchPosts());
   }, []);
 

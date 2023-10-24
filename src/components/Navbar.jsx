@@ -1,9 +1,9 @@
 // Navbar.js
 import React from "react";
-import { Link } from "react-router-dom";
 import { logout } from "../slice/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Profile from "./Profile";
+import { Link } from "react-router-dom";
 
 function Navbar({ className }) {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ function Navbar({ className }) {
   const username = useSelector(state => state.auth.username);
 
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(logout())
   };
 
   return (
