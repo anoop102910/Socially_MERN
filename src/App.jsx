@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, UNSAFE_DataRouterStateContext } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./components/Home";
 import Signin from "./components/auth/Signin";
@@ -8,12 +8,9 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import HomeLayout from "./components/HomeLayout";
 import UserList from "./components/Follow/UserList";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import the CSS for styling.
-import UserProfile from "./components/Profile/UserProfile";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  // const authStatus = useSelector(state=>state.auth.status);
-  // if(authStatus==='loading') return <h1>Laoding/...</h1>
   return (
     <>
       <Routes>

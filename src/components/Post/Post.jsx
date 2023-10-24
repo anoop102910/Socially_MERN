@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import PostsContainer from "./PostsContainer";
 import PostForm from "./PostForm";
-import { PulseLoader } from "react-spinners";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../../slice/postSlice";
 import { PostLoader } from "./PostLoader";
