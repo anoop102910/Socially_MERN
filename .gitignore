@@ -1,5 +1,6 @@
 # Logs
 /src/components/Profile
+/src/slice/oldauthSlice.js
 logs
 *.log
 npm-debug.log*

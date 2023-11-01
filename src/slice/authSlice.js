@@ -1,72 +1,49 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import Cookies from "js-cookie";
-import { api } from "../api";
+import { createSlice } from "@reduxjs/toolkit";
+import jwtDecode from "jwt-decode";
 
 const initialState = {
-  status: null,
   isAuthenticated: false,
   userId: null,
   username: null,
   profileImage: null,
 };
 
-export const checkAuthentication = createAsyncThunk("auth/checkAuthentication", async (_, { rejectWithValue }) => {
-  try {
-    const response = await api.get("/check-cookie-validation");
-    return response.data.message;
-  } catch (error) {
-    return rejectWithValue(error.message);
-  }
-});
-export const logout = createAsyncThunk("auth/logout", async (_, { rejectWithValue }) => {
-  try {
-    const response = await api.get("/logout");
-    console.log(response);
-    return response;
-  } catch (error) {
-    return rejectWithValue(error.message);
-  }
-});
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  extraReducers: builder => {
-    builder
-      .addCase(checkAuthentication.pending, state => {
-        state.status = "loading";
-      })
-      .addCase(checkAuthentication.rejected, state => {
-        state.status = "error";
-      })
-      .addCase(checkAuthentication.fulfilled, (state, action) => {
-        state.status = null;
-        const data = action.payload;
-        if (data) {
-          try {
-            state.isAuthenticated = true;
-            state.userId = data.userId;
-            state.username = data.name;
-            if (data.profileImage) state.profileImage = data.profileImage;
-            else state.profileImage = null
-          } catch (error) {
-            Cookies.remove("token");
-          }
+  reducers: {
+    checkAuthentication: state => {
+      const token = localStorage.getItem("token");
+
+      if (token) {
+        const decodedToken = jwtDecode(token);
+        const currentTime = Date.now() / 1000;
+        if (decodedToken.exp && decodedToken.exp < currentTime) {
+          state.isAuthenticated = false;
+          state.user = null;
+          localStorage.removeItem("token");
+        } else {
+          state.isAuthenticated = true;
+          state.userId = decodedToken.userId;
+          state.username = decodedToken.name;
+          if (decodedToken.profileImage) state.profileImage = decodedToken.profileImage;
         }
-      })
-      .addCase(logout.pending, state => {
-        state.status = "loading";
-      })
-      .addCase(logout.rejected, state => {
-        state.status = "error";
-      })
-      .addCase(logout.fulfilled, (state, action) => {
-        state.status = null;
+      } else {
         state.isAuthenticated = false;
         state.userId = null;
         state.username = null;
         state.profileImage = null;
-      });
+      }
+    },
+    logout: state => {
+      state.isAuthenticated = false;
+      state.username = null;
+      state.profileImage = null;
+      state.userId = null;
+      localStorage.removeItem("token");
+    },
   },
 });
 
-export const authReducer = authSlice.reducer;
+export const { checkAuthentication, logout } = authSlice.actions;
+export const authReducer =  authSlice.reducer;

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { api } from "../../api";
 import { useDispatch } from "react-redux";
 import { checkAuthentication } from "../../slice/authSlice";
-import authImage from "../../assets/authImage.png"
+import authImage from "../../assets/authImage.png";
 
 import { useNavigate } from "react-router-dom";
 function Signup() {
@@ -33,6 +33,11 @@ function Signup() {
       setLoading(true);
       const response = await api.post("/api/user/signup", formData);
       console.log(response.data);
+      const authHeader = response.headers.get("Authorization");
+      if (authHeader) {
+        const token = authHeader.replace("Bearer ", "");
+        localStorage.setItem("token", token);
+      }
       dispatch(checkAuthentication());
       setLoading(false);
       navigate("/");

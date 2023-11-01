@@ -4,7 +4,7 @@ import { api } from "../../api";
 import { useDispatch } from "react-redux";
 import { checkAuthentication } from "../../slice/authSlice";
 import { useNavigate } from "react-router-dom";
-import authImage from "../../assets/authImage.png"
+import authImage from "../../assets/authImage.png";
 
 function Signin() {
   const [formData, setFormData] = useState({
@@ -29,7 +29,11 @@ function Signin() {
     try {
       setLoading(true);
       const response = await api.post("/api/user/signin", formData);
-      console.log(response.data);
+      const authHeader = response.headers.get("Authorization");
+      if (authHeader) {
+        const token = authHeader.replace("Bearer ", ""); 
+        localStorage.setItem("token", token);
+      }
       dispatch(checkAuthentication());
       navigate("/");
       setLoading(false);
@@ -58,7 +62,16 @@ function Signin() {
               <label className="block" htmlFor="password">
                 Password
               </label>
-              <input className="mb-12" onFocus={() => setError(null)} type="password" name="password" id="password" placeholder="Enter your password" value={formData.password} onChange={handleInputChange} />
+              <input
+                className="mb-12"
+                onFocus={() => setError(null)}
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Enter your password"
+                value={formData.password}
+                onChange={handleInputChange}
+              />
             </div>
             {error && (
               <div className="px-4 py-2 border border-red-400 rounded-md text-red-400 text-sm mb-4">
