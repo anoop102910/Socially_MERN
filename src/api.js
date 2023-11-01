@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const api = axios.create({ baseURL: "http://localhost:5000", withCredentials: true ,responseType:"json"});
+const api = axios.create({ baseURL: "https://socially-api-u2p6.onrender.com", withCredentials: true ,responseType:"json"});
 
 api.interceptors.request.use(
     (config) => {
