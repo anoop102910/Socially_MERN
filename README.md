@@ -1,6 +1,7 @@
 # Social Media Website
 
-![Website Screenshot](screenshot.png)
+[Visit the website](https://socially-fftw.onrender.com)
+
 
 ## Table of Contents
 - [Introduction](#introduction)
