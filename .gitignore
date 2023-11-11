@@ -1,7 +1,5 @@
 # Logs
-/src/components/Profile
 /src/slice/oldauthSlice.js
-/src/Test
 .env
 logs
 *.log

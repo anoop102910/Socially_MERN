@@ -10,7 +10,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserProfile from "./components/Profile/UserProfile";
 
-import SignupForm from "./Test/SignupForm";
 
 function App() {
   return (
@@ -26,7 +25,6 @@ function App() {
           </Route>
           <Route path="signin" element={<Signin />} />
           <Route path="signup" element={<Signup />} />
-          <Route path="test" element={<SignupForm />} />
         </Route>
       </Routes>
       <ToastContainer
