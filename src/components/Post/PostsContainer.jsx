@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 function PostsContainer({ className }) {
   const posts = useSelector(state => state.post.posts);
   return (
-    <div className={`w-[550px] ${className}`}>
+    <div className={`${className}`}>
       {posts.map(post => (
         <PostCard key={post._id} post={post} className={"mb-4"} />
       ))}

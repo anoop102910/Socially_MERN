@@ -26,14 +26,14 @@ function UserCard({ user }) {
     }
   }
   return (
-    <div className="flex items-center justify-between mb-4">
+    <div className="flex items-center justify-between mb-4 ">
       <div className="flex items-center">
-        <img className="w-12 object-contain object-center" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4HbqZyTk4fRBYWt-7H6ubyM0ex6A8WyVunKD2mqOAmA&s" alt="" />
-        <span className="text-gray-500 ml-6">{user.firstName + " " + user.lastName}</span>
+        <img className="w-12 object-contain object-center rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4HbqZyTk4fRBYWt-7H6ubyM0ex6A8WyVunKD2mqOAmA&s" alt="" />
+        <span className="text-gray-600 dark:text-slate-200 ml-6">{user.firstName + " " + user.lastName}</span>
       </div>
       <button
         onClick={!requestSent ? handleFollow : handleUnFollow}
-        className={`text-[0.775rem] px-4 py-2 rounded-md ${requestSent ? "bg-green-600 " : "bg-blue-600 "}  text-white`}
+        className={`text-[0.775rem] px-4 py-2 rounded-md ${requestSent ? "bg-green-600 " : "bg-blue-500 "}  text-white`}
       >
         {requestSent ? "Following" : "Follow"}
       </button>

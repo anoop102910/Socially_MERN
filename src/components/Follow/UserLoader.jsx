@@ -13,7 +13,7 @@ function CardLoader() {
   export default function UserLoader(){
     return (
       <>
-        <div className="bg-white rounded-md p-4 mt-3 shadow-md w-[550px]">
+        <div className="bg-white dark:bg-dark-200 rounded-md p-4 mt-3 shadow-md w-[550px] appear-animation">
           <h2 className="">Friends</h2>
           <hr className="my-3" />
           <div >

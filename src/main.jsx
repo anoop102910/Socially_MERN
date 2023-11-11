@@ -6,6 +6,10 @@ import { Provider } from "react-redux";
 import store from "./store.js";
 import { checkAuthentication } from "./slice/authSlice.js";
 import { BrowserRouter } from "react-router-dom";
+import "@fontsource/pacifico"
+import "@fontsource/montserrat"
+import "@fontsource/open-sans"
+import "@fontsource/roboto"
 
 store.dispatch(checkAuthentication());
 

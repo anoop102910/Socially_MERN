@@ -1,4 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,500;0,700;0,800;0,900;1,700&family=Roboto&family=Pacifico&family=Nosifer&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .auth-input {
+    @apply border p-0.5 w-full text-[0.9rem];
+  }
+}
 
 .bg-dark {
   background-color: rgba(0, 0, 0, 0.7);
@@ -21,10 +30,6 @@
   font-family: Pacifico;
 }
 
-.auth-form {
-  width: 75%;
-}
-
 .auth-form label {
   font-size: 0.89rem;
   font-family: var(--roboto);
@@ -37,6 +42,29 @@
   outline: none;
   padding-left: 0.5rem;
   font-size: 0.9rem;
+  @apply dark:bg-dark-300 dark:border-slate-400;
+}
+
+.auth-label {
+  font-size: 0.89rem;
+  font-family: var(--roboto);
+}
+
+.auth-input {
+  border-bottom: 1px solid black;
+  padding: 0.5rem 0rem;
+  width: 100%;
+  outline: none;
+  padding-left: 0.5rem;
+  font-size: 0.9rem;
+  @apply dark:bg-dark-300 dark:border-slate-400;
+}
+
+.auth-input:focus {
+  box-shadow: 1px 1px black;
+  border: 1px solid black;
+  border-radius: 5px;
+  border-style: ridge;
 }
 
 .auth-form input:focus {
@@ -51,12 +79,19 @@
 }
 
 .loader {
-  background: #eee;
   background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
   border-radius: 5px;
   background-size: 200% 100%;
   animation: 1.5s shine linear infinite;
 }
+/* @media (prefers-color-scheme: dark) {
+  .loader {
+    background: linear-gradient(110deg, #333333 8%, #222222 18%, #333333 33%);
+    animation: 1.5s shine linear infinite;
+    border-radius: 5px;
+    background-size: 200% 100%;
+  }
+} */
 
 @keyframes shine {
   to {
@@ -65,10 +100,25 @@
 }
 
 .bubble {
-  transition: 0.9s ;
+  transition: 0.9s;
 }
 
 .bubble:hover {
   box-shadow: inset -120px -120px rgb(101, 209, 101);
   color: white;
+}
+
+.appear-animation {
+  animation: appear-animation;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes appear-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

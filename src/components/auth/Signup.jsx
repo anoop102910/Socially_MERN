@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import { api } from "../../api";
 import { useDispatch } from "react-redux";
 import { checkAuthentication } from "../../slice/authSlice";
-import authImage from "../../assets/authImage.png";
-
 import { useNavigate } from "react-router-dom";
-function Signup() {
+
+const Signup = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -16,18 +15,9 @@ function Signup() {
   });
   const [loading, setLoading] = useState(null);
   const [error, setError] = useState(null);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = async e => {
+  const handleFormSubmit = async e => {
     e.preventDefault();
     try {
       setLoading(true);
@@ -46,58 +36,128 @@ function Signup() {
       console.log(error.response.data);
     }
   };
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  let style = {
+    input:
+      "mt-4 md:mt-1 md:text-sm rounded-md p-2 max-[640px]:placeholder:text-white  bg-white md:bg-transparent md:border-b md:border-black md:focus:shadow-md  md:rounded-none max-[640px]:bg-opacity-30 w-full outline-none pl-2 text-base dark:bg-dark-300 dark:border-slate-400 focus:shadow-md focus:border-solid focus:border focus:border-white focus:rounded-md focus:border-ridge",
+  };
 
   return (
-    <div className="w-full h-[100vh] flex items-center justify-center px-56 mt-8">
-      <div className="flex flex-1 rounded-3xl shadow-md  overflow-hidden h-[550px]">
-        <img className="w-[50%] object-cover object-center" src={authImage} alt="" />
-        <div className="form-container w-[50%] bg-white flex items-center pt-8 flex-col">
-          <h1 className="text-xl mb-12">Create an Account</h1>
-          <form className="auth-form" onSubmit={handleSubmit}>
-            <div className="flex gap-x-3 mb-6">
-              <div>
-                <label className="block" htmlFor="firstName">
-                  First Name
-                </label>
-                <input className="" type="text" name="firstName" id="firstName" placeholder="Enter your first name" value={formData.firstName} onChange={handleChange} />
-              </div>
-              <div>
-                <label className="block" htmlFor="lastName">
-                  Last Name
-                </label>
-                <input className="" type="text" name="lastName" id="lastName" placeholder="Enter your last name" value={formData.lastName} onChange={handleChange} />
-              </div>
-            </div>
-            <div className="mb-6">
-              <label className="block" htmlFor="email">
-                Email
+    <div className="mx-auto text-black relative min-h-screen w-full flex justify-center items-center appear-animation">
+      <div className="md:w-[1000px] md:h-[550px] md:mt-16 rounded-lg md:flex md:bg-white md:overflow-hidden">
+        <img
+          src="/social.png"
+          className="w-full md:z-10 h-screen object-cover object-center opacity-7 -z-20 absolute top-0 left-0 md:static md:w-1/2 md:h-full "
+          alt=""
+        />
+        <form
+          onSubmit={handleFormSubmit}
+          className="w-full mx-auto bg-transparent p-8 text-white  md:w-[45%] md:text-black md:auth-form "
+        >
+          <h2 className="text-2xl font-semibold text-center mb-8 ">Create new Account</h2>
+
+          <div className="flex gap-x-4">
+            <div className="mb-4">
+              <label htmlFor="firstName" className="auth-label">
+                First Name
               </label>
-              <input className="" type="text" name="email" id="email" placeholder="Enter your email" value={formData.email} onChange={handleChange} />
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+                className={style.input}
+                placeholder="First name"
+              />
             </div>
-            <div className="mb-6">
-              <label className="block" htmlFor="password">
-                Password
+
+            <div className="mb-4">
+              <label htmlFor="lastName" className="auth-label">
+                Last Name
               </label>
-              <input type="password" name="password" id="password" placeholder="Enter your password" value={formData.password} onChange={handleChange} />
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
+                className={style.input}
+                placeholder="Last name"
+              />
             </div>
-            <div className="mb-8">
-              <label className="block" htmlFor="confirmPassword">
-                Confirm Password
-              </label>
-              <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleChange} />
-            </div>
-            <input value={loading ? "Signing up..." : "Sign up"} className="w-full rounded py-2 outline-none border-none text-white bg-black mb-4" type="submit" />
-          </form>
-          <span className="text-sm">
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="email" className="auth-label">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className={style.input}
+              placeholder="Enter your email"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="password" className="auth-label ">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              className={style.input}
+              placeholder="Enter your password"
+            />
+          </div>
+
+          <div className="mb-10">
+            <label htmlFor="confirmPassword" className="auth-label ">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              className={style.input}
+              placeholder="Confirm your password"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-blue-500  text-white p-2 rounded hover:bg-blue-600 focus:outline-none focus:shadow-outline md:bg-black md:hover:bg-black"
+          >
+            {loading ? "Signing in..." : "Sign in"}
+          </button>
+
+          <span className="text-sm block text-center mt-6">
             Already have an account?
             <Link to={"/signin"} className="text-blue-500 ml-4" href="">
-              Sign In
+              Sign in
             </Link>
           </span>
-        </div>
+        </form>
+        <div className="bg-dark-100/75 -z-10 w-full h-screen absolute top-0 left-0 md:hidden"></div>
       </div>
     </div>
   );
-}
+};
 
 export default Signup;

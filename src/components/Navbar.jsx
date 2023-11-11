@@ -15,7 +15,7 @@ function Navbar({ className }) {
   };
 
   return (
-    <nav className={`bg-blue-500 p-2 z-30 ${className}`}>
+    <nav className={`bg-blue-500 dark:bg-blue-700 p-2 z-30 ${className}`}>
       <div className="container mx-auto flex justify-between items-center">
         <Link to={"/"}>
           <h1 className="text-2xl text-white font-bold py-1 font-[Pacifico]">Socially</h1>
