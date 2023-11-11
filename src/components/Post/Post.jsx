@@ -30,12 +30,12 @@ function Post() {
 function Loader() {
   return (
     <div className="max-w-[550px] text-black">
-      <div className="bg-white dark:bg-dark-300 p-4 rounded-md mb-4 shadow-md">
+      <div className="bg-white test:bg-dark-300 p-4 rounded-md mb-4 shadow-md">
         <div className="flex justify-between">
           <div className="flex items-center">
-            <div className="w-12 h-12 bg-gray-300 dark:bg-dark-400 rounded-full shadow-md loader"></div>
+            <div className="w-12 h-12 bg-gray-300 test:bg-dark-400 rounded-full shadow-md loader"></div>
             <div className="flex flex-col ml-3 justify-between gap-y-1">
-              <div className="w-24 h-4 bg-gray-300 dark:bg-dark-400 loader"></div>
+              <div className="w-24 h-4 bg-gray-300 test:bg-dark-400 loader"></div>
             </div>
           </div>
         </div>

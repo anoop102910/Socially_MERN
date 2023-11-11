@@ -36,7 +36,7 @@
   outline: none;
   padding-left: 0.5rem;
   font-size: 0.9rem;
-  /* @apply dark:bg-dark-300 dark:border-slate-400; */
+  /* @apply test:bg-dark-300 test:border-slate-400; */
 }
 
 .auth-label {
@@ -51,7 +51,7 @@
   outline: none;
   padding-left: 0.5rem;
   font-size: 0.9rem;
-  /* @apply dark:bg-dark-300 dark:border-slate-400; */
+  /* @apply test:bg-dark-300 test:border-slate-400; */
 }
 
 .auth-input:focus {

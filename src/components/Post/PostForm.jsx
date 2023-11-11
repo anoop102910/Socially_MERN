@@ -22,7 +22,7 @@ function PostForm({ className }) {
   };
 
   return (
-    <div className={`bg-white dark:text-slate-200 text-gray-700 dark:bg-dark-200 p-4 rounded-md shadow-md  ${className}`}>
+    <div className={`bg-white test:text-slate-200 text-gray-700 test:bg-dark-200 p-4 rounded-md shadow-md  ${className}`}>
       <div className="flex justify-between">
         <div className="flex items-center">
           <Profile w={'2rem'}/>
@@ -33,7 +33,7 @@ function PostForm({ className }) {
       </div>
       <div>
         <form className="max-h-[300px] overflow-y-auto " onSubmit={e => handleSubmit(e)}>
-          <textarea value={text} onChange={e => setText(e.target.value)} placeholder="Write some text" className="w-full border dark:border-slate-400 rounded-md mt-4 h-28 p-2 outline-none text-gray-700 dark:bg-dark-300 dark:text-slate-200"></textarea>
+          <textarea value={text} onChange={e => setText(e.target.value)} placeholder="Write some text" className="w-full border test:border-slate-400 rounded-md mt-4 h-28 p-2 outline-none text-gray-700 test:bg-dark-300 test:text-slate-200"></textarea>
           {selectedImage && (
             <div className="relative ">
               <img
@@ -57,7 +57,7 @@ function PostForm({ className }) {
               </label>
               <input ref={imageRef} onChange={e => setSelectedImage(e.target.files[0])} id="image" name="image" type="file" className="hidden " />
             </div>
-            <input accept="image/*" className="py-2 px-4 bg-blue-500 rounded-md text-white hover:bg-blue-600 transition mt-4 dark:bg-blue-600 dark:hover:bg-blue-700 " type="submit" value="Post" />
+            <input accept="image/*" className="py-2 px-4 bg-blue-500 rounded-md text-white hover:bg-blue-600 transition mt-4 test:bg-blue-600 test:hover:bg-blue-700 " type="submit" value="Post" />
           </div>
         </form>
       </div>

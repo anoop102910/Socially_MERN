@@ -29,7 +29,7 @@ function UserCard({ user }) {
     <div className="flex items-center justify-between mb-4 ">
       <div className="flex items-center">
         <img className="w-12 object-contain object-center rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4HbqZyTk4fRBYWt-7H6ubyM0ex6A8WyVunKD2mqOAmA&s" alt="" />
-        <span className="text-gray-600 dark:text-slate-200 ml-6">{user.firstName + " " + user.lastName}</span>
+        <span className="text-gray-600 test:text-slate-200 ml-6">{user.firstName + " " + user.lastName}</span>
       </div>
       <button
         onClick={!requestSent ? handleFollow : handleUnFollow}
