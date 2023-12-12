@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Timestamp from "./Timestamp";
-import useToggle from "../../hooks/useToggle";
+import useToggle from "../../../hooks/useToggle";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePost, likePost, unLikePost } from "../../slice/postSlice";
 

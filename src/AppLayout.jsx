@@ -1,8 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from "./components/Navbar";
 
-function Layout() {
+function AppLayout() {
   return (
     <div className="appear-animation">
       <Navbar className={"mb-2 fixed top-0 left-0 w-full"} />
@@ -11,4 +11,4 @@ function Layout() {
   );
 }
 
-export default Layout;
+export default AppLayout;

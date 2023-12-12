@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { api } from "../../api";
 import { useDispatch } from "react-redux";
-import { checkAuthentication } from "../../slice/authSlice";
 import { useNavigate } from "react-router-dom";
+import { api } from "../../api";
+import { checkAuthentication } from "../../slice/authSlice";
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -31,8 +32,11 @@ const LoginForm = () => {
     } catch (error) {
       setLoading(false);
       console.log(error);
-      if (error.message === "Network Error") return setError("Network Error");
-      setError(error.response.data.error);
+      if (error.message == "Network Error" || error.response.status == 500) {
+        toast.error("Something went wrong");
+        return;
+      }
+      if (error.response.status == 400) setError(error.response.data.error);
       console.log(error.response.data);
     }
   };
@@ -50,7 +54,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="mx-auto text-black relative min-h-screen w-full flex justify-center items-center appear-animation ">
+    <div className="mx-auto text-black relative min-h-screen w-full flex justify-center items-center  ">
       <div className="md:w-[1000px] md:min-h-[500px] md:mt-10 rounded-lg md:flex md:bg-white md:overflow-hidden">
         <form
           onSubmit={handleFormSubmit}
@@ -71,10 +75,11 @@ const LoginForm = () => {
               onChange={handleChange}
               className={style.input}
               placeholder="Enter your email"
+              required
             />
           </div>
 
-          <div className="mb-10">
+          <div className="mb-6">
             <label htmlFor="password" className="auth-label ">
               Password
             </label>
@@ -87,12 +92,13 @@ const LoginForm = () => {
               onChange={handleChange}
               className={style.input}
               placeholder="Enter your password"
+              required
             />
           </div>
           {error && (
             <div className="px-4 py-2 border border-red-400 rounded-md text-red-400 text-sm mb-4">
               <i class="fas fa-times border border-red-300 rounded-full px-3 py-[0.6rem] mr-5"></i>
-              <>Incorrect Username or Password</>
+              <>{error}</>
             </div>
           )}
           <button
@@ -101,7 +107,7 @@ const LoginForm = () => {
           >
             {loading ? "Signing in..." : "Sign in"}
           </button>
-      
+
           <span className="text-sm block text-center mt-6">
             Don't have an account?
             <Link to={"/signup"} className="text-blue-500 ml-4" href="">

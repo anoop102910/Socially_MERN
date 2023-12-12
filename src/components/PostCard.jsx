@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import Timestamp from "./Timestamp";
-import useToggle from "../../hooks/useToggle";
 import { useDispatch, useSelector } from "react-redux";
-import { deletePost, likePost, unLikePost } from "../../slice/postSlice";
-import ConnectionProfile from "../ConnectionProfile";
+import useToggle from "../hooks/useToggle";
+import { deletePost, likePost, unLikePost } from "../slice/postSlice";
+import Timestamp from "./Timestamp"
+import ConnectionProfile from "./ConnectionProfile";
 
 function PostCard({ className, post }) {
   const [isToggled, toggle] = useToggle(false);
@@ -25,6 +24,7 @@ function PostCard({ className, post }) {
     console.log("unlike/post");
     dispatch(unLikePost(_id));
   }
+
   return (
     <div className={`bg-white py-4 md:p-4 rounded-md text-gray-700 shadow-md test:bg-dark-200 test:text-white ${className}`}>
       <div className="flex justify-between px-2">

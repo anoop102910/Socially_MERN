@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { api } from "../../api";
+import { api } from "../../../api";
 
 function UserCard({ user }) {
   const [requestSent, setRequestSent] = useState(false);

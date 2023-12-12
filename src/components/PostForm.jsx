@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createPost } from "../../slice/postSlice";
-import Profile from "../Profile";
+import { createPost } from "../slice/postSlice";
+import Profile from "./Profile";
 
 function PostForm({ className }) {
   const [text, setText] = useState("");
@@ -15,6 +15,7 @@ function PostForm({ className }) {
     imageRef.current.value = null;
     setSelectedImage(null);
   };
+
   const handleSubmit = async e => {
     e.preventDefault();
     if (text.length !== 0 || selectedImage) dispatch(createPost({ text, image: selectedImage }));

@@ -1,6 +1,5 @@
-import React, { useEffect, useLayoutEffect } from "react";
-import PostCard from "./PostCard";
 import { useSelector } from "react-redux";
+import PostCard from "../../../components/PostCard";
 
 function PostsContainer({ className }) {
   const posts = useSelector(state => state.post.posts);

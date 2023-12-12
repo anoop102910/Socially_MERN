@@ -1,9 +1,9 @@
 import React from "react";
-import Sidebar from "./Sidebar";
 import { Outlet } from "react-router-dom";
-import BottomNavbar from "../BottomNavbar";
+import BottomNavbar from "../../components/BottomNavbar";
+import Sidebar from "../../components/Sidebar";
 
-function HomeLayout() {
+function Layout() {
   return (
     <>
       <div className="">
@@ -17,4 +17,4 @@ function HomeLayout() {
   );
 }
 
-export default HomeLayout;
+export default Layout;

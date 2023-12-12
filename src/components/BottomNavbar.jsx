@@ -1,4 +1,3 @@
-import React from "react";
 import { FaHome, FaUsers, FaEnvelope, FaEllipsisH } from "react-icons/fa";
 
 const BottomNavbar = () => {

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { api } from "../../api";
 import { useDispatch } from "react-redux";
-import { checkAuthentication } from "../../slice/authSlice";
 import { useNavigate } from "react-router-dom";
+import { checkAuthentication } from "../../slice/authSlice";
+import { api } from "../../api";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +17,7 @@ const Signup = () => {
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleFormSubmit = async e => {
     e.preventDefault();
     try {
@@ -33,6 +34,12 @@ const Signup = () => {
       navigate("/");
     } catch (error) {
       setLoading(false);
+      console.log(error);
+      if (error.message == "Network Error" || error.response.status == 500) {
+        toast.error("Something went wrong");
+        return;
+      }
+      if (error.response.status == 400) setError(error.response.data.error);
       console.log(error.response.data);
     }
   };
@@ -50,7 +57,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="mx-auto text-black relative min-h-screen w-full flex justify-center items-center appear-animation">
+    <div className="mx-auto text-black relative min-h-screen w-full flex justify-center items-center ">
       <div className="md:w-[1000px] md:h-[550px] md:mt-16 rounded-lg md:flex md:bg-white md:overflow-hidden">
         <img
           src="/social.png"
@@ -74,8 +81,10 @@ const Signup = () => {
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
+                onFocus={() => setError(null)}
                 className={style.input}
                 placeholder="First name"
+                required
               />
             </div>
 
@@ -89,8 +98,10 @@ const Signup = () => {
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
+                onFocus={() => setError(null)}
                 className={style.input}
                 placeholder="Last name"
+                required
               />
             </div>
           </div>
@@ -105,8 +116,10 @@ const Signup = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              onFocus={() => setError(null)}
               className={style.input}
               placeholder="Enter your email"
+              required
             />
           </div>
 
@@ -120,8 +133,10 @@ const Signup = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
+              onFocus={() => setError(null)}
               className={style.input}
               placeholder="Enter your password"
+              required
             />
           </div>
 
@@ -135,11 +150,18 @@ const Signup = () => {
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
+              onFocus={() => setError(null)}
               className={style.input}
               placeholder="Confirm your password"
+              required
             />
           </div>
-
+          {error && (
+            <div className=" -mt-4 text-red-600 text-sm mb-4">
+              <i class="fas fa-times text-xs border border-red-300 rounded-full px-2 py-[.3rem] mr-3"></i>
+              <>{error}</>
+            </div>
+          )}
           <button
             type="submit"
             className="w-full bg-blue-500  text-white p-2 rounded hover:bg-blue-600 focus:outline-none focus:shadow-outline md:bg-black md:hover:bg-black"

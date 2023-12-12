@@ -1,5 +1,3 @@
-// Navbar.js
-import React from "react";
 import { logout } from "../slice/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Profile from "./Profile";

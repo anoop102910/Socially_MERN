@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import PostsContainer from "./PostsContainer";
-import PostForm from "./PostForm";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPosts } from "../../slice/postSlice";
+import { fetchPosts } from "../../../slice/postSlice";
 import { PostLoader } from "./PostLoader";
-import { checkAuthentication } from "../../slice/authSlice";
+import { checkAuthentication } from "../../../slice/authSlice";
+import PostForm from "../../../components/PostForm";
 
 function Post() {
   const status = useSelector(state => state.post.status);

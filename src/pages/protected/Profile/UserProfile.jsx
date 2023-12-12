@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import backgroundImage from "../../assets/backgroundImage.png";
 import { toast, useToast } from "react-toastify";
-import { api } from "../../api";
-import PostCard from "../Post/PostCard";
+import PostCard from "../../../components/PostCard";
+import { api } from "../../../api";
 import { useSelector } from "react-redux";
-import Profile from "../Profile";
-import useToggle from "../../hooks/useToggle";
+import Profile from "../../../components/Profile";
+import useToggle from "../../../hooks/useToggle";
 
 function UserProfile() {
   const [posts, setPosts] = useState(null);
@@ -41,13 +40,13 @@ function UserProfile() {
         <div id="user-profile" className="mr-10 relative appear-animation">
           <img
             className="w-full h-[300px] rounded-md object-center object-cover "
-            src={backgroundImage}
+            src={"background.png"}
             alt=""
           />
           <div className="absolute top-56 left-3 ">
             <i
               onClick={toggle}
-              class="fas fa-cloud-upload-alt text-white text-2xl cursor-pointer absolute bottom-1 right-4"
+              className="fas fa-cloud-upload-alt text-white text-2xl cursor-pointer absolute bottom-1 right-4"
             ></i>
             <div
               className={`dropdown px-3 py-2 bg-white space-y-4 rounded-md tex-sm text-center absolute -bottom-3 -right-28  ${
@@ -55,7 +54,7 @@ function UserProfile() {
               }`}
             >
               <div onClick={toggleUpload} className="flex w-max">
-                <i class="fas fa-upload text-gray-600 mr-3"></i>
+                <i className="fas fa-upload text-gray-600 mr-3"></i>
                 <button className="text-sm text-gray-600">Upload Image</button>
               </div>
             </div>
@@ -80,6 +79,7 @@ function UserPostContainer() {
 }
 function ImageUploader({ className, onClose }) {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [loading,setLoading] = useState(false);
   const username = useSelector(state => state.auth.username);
   const imageRef = useRef(null);
 
@@ -89,6 +89,7 @@ function ImageUploader({ className, onClose }) {
   };
   const handleSubmit = async e => {
     e.preventDefault();
+    setLoading(true);
     if (selectedImage) {
       try {
         console.log(selectedImage);
@@ -100,7 +101,9 @@ function ImageUploader({ className, onClose }) {
           }
         );
         console.log(response.data);
+        setLoading(false);
       } catch (error) {
+        setLoading(false)
         console.log(error.response);
         toast.error("Something went wrong");
       }
@@ -172,9 +175,10 @@ function ImageUploader({ className, onClose }) {
             </div>
             <input
               accept="image/*"
-              className="py-2 px-4 bg-blue-500 rounded-md text-white hover:bg-blue-600 transition mt-4 "
+              className="py-2 px-4 bg-blue-500 rounded-md text-white hover:bg-blue-600 transition mt-4 disabled:bg-gray-400"
               type="submit"
               value="Post"
+              disabled={loading}
             />
           </div>
         </form>

@@ -1,28 +1,30 @@
-import { Navigate, Route, Routes } from "react-router-dom";
-import Layout from "./components/Layout";
-import Home from "./components/Home";
-import Signin from "./components/auth/Signin";
-import Signup from "./components/auth/Signup";
-import ProtectedRoute from "./components/ProtectedRoute";
-import HomeLayout from "./components/HomeLayout";
-import UserList from "./components/Follow/UserList";
+import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import UserProfile from "./components/Profile/UserProfile";
-
+import AuthLayout from "./pages/auth/AuthLayout";
+import Layout from "./pages/protected/Layout";
+import AppLayout from "./AppLayout";
+import ProtectedLayout from "./pages/protected/ProtectedLayout";
+import Post from "./pages/protected/Post/Post";
+import UserList from "./pages/protected/Follow/UserList";
+import UserProfile from "./pages/protected/Profile/UserProfile";
+import Signin from "./pages/auth/Signin"
+import Signup from "./pages/auth/Signup"
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route path="/" element={<ProtectedRoute />}>
-            <Route path="/" element={<HomeLayout />}>
-              <Route path="/" element={<Home />} />
+        <Route path="/" element={<AppLayout />}>
+          <Route path="/" element={<ProtectedLayout />}>
+            <Route path="/" element={<Layout/>}>
+              <Route path="/" element={<Post />} />
               <Route path="/user" element={<UserList />} />
               <Route path="/profile" element={<UserProfile />} />
             </Route>
           </Route>
+        </Route>
+        <Route path="/" element={<AuthLayout />}>
           <Route path="signin" element={<Signin />} />
           <Route path="signup" element={<Signup />} />
         </Route>
