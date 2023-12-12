@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { toast, useToast } from "react-toastify";
 import PostCard from "../../../components/PostCard";
-import { api } from "../../../api";
+import { api } from "../../../slice/api";
 import { useSelector } from "react-redux";
 import Profile from "../../../components/Profile";
 import useToggle from "../../../hooks/useToggle";
@@ -40,7 +40,7 @@ function UserProfile() {
         <div id="user-profile" className="mr-10 relative appear-animation">
           <img
             className="w-full h-[300px] rounded-md object-center object-cover "
-            src={"background.png"}
+            src={"background.webp"}
             alt=""
           />
           <div className="absolute top-56 left-3 ">

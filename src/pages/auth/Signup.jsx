@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { checkAuthentication } from "../../slice/authSlice";
-import { api } from "../../api";
+import { api } from "../../slice/api";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -39,7 +39,7 @@ const Signup = () => {
         toast.error("Something went wrong");
         return;
       }
-      if (error.response.status == 400) setError(error.response.data.error);
+       setError(error.response.data.error);
       console.log(error.response.data);
     }
   };
@@ -60,7 +60,7 @@ const Signup = () => {
     <div className="mx-auto text-black relative min-h-screen w-full flex justify-center items-center ">
       <div className="md:w-[1000px] md:h-[550px] md:mt-16 rounded-lg md:flex md:bg-white md:overflow-hidden">
         <img
-          src="/social.png"
+          src="/social.webp"
           className="w-full md:z-10 h-screen object-cover object-center opacity-7 -z-20 absolute top-0 left-0 md:static md:w-1/2 md:h-full "
           alt=""
         />

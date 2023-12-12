@@ -8,8 +8,8 @@ import ProtectedLayout from "./pages/protected/ProtectedLayout";
 import Post from "./pages/protected/Post/Post";
 import UserList from "./pages/protected/Follow/UserList";
 import UserProfile from "./pages/protected/Profile/UserProfile";
-import Signin from "./pages/auth/Signin"
-import Signup from "./pages/auth/Signup"
+import Signin from "./pages/auth/Signin";
+import Signup from "./pages/auth/Signup";
 
 function App() {
   return (
@@ -17,16 +17,16 @@ function App() {
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route path="/" element={<ProtectedLayout />}>
-            <Route path="/" element={<Layout/>}>
+            <Route path="/" element={<Layout />}>
               <Route path="/" element={<Post />} />
               <Route path="/user" element={<UserList />} />
               <Route path="/profile" element={<UserProfile />} />
             </Route>
           </Route>
-        </Route>
-        <Route path="/" element={<AuthLayout />}>
-          <Route path="signin" element={<Signin />} />
-          <Route path="signup" element={<Signup />} />
+          <Route path="/" element={<AuthLayout />}>
+            <Route path="signin" element={<Signin />} />
+            <Route path="signup" element={<Signup />} />
+          </Route>
         </Route>
       </Routes>
       <ToastContainer

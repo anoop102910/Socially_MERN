@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { api } from "../../api";
+import { api } from "../../slice/api";
 import { checkAuthentication } from "../../slice/authSlice";
 import { toast } from "react-toastify";
 
@@ -117,7 +117,7 @@ const LoginForm = () => {
         </form>
         <div className="bg-dark-100/75 -z-10 w-full h-screen absolute top-0 left-0 md:hidden"></div>
         <img
-          src="/social.png"
+          src="/social.webp"
           className="w-full md:z-10 h-screen object-cover object-center opacity-7 -z-20 absolute top-0 left-0 md:static md:w-1/2 md:h-full "
           alt=""
         />

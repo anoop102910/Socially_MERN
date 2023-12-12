@@ -14,7 +14,7 @@ function CardLoader() {
     return (
       <>
         <div className="bg-white test:bg-dark-200 rounded-md p-4 mt-3 shadow-md w-[550px] appear-animation">
-          <h2 className="">Friends</h2>
+          <h2 className="text-black">Friends</h2>
           <hr className="my-3" />
           <div >
             <ul>

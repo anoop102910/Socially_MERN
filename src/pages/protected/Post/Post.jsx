@@ -19,7 +19,7 @@ function Post() {
 
   return (
     <>
-      <div className="max-w-[550px] appear-animation">
+      <div className="max-w-[550px] ">
         <PostForm className={"mb-4"} />
         <PostsContainer />
       </div>
