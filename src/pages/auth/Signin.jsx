@@ -55,7 +55,8 @@ const LoginForm = () => {
 
   return (
     <div className="mx-auto text-black relative min-h-screen w-full flex justify-center items-center  ">
-      <div className="md:w-[1000px] md:min-h-[500px] md:mt-10 rounded-lg md:flex md:bg-white md:overflow-hidden">
+      <img src="signin.webp" className="max-sm:hidden absolute inset w-full h-screen object-cover filter brightness-50 -z-[1000] opacity-80 bg-blend-darken object-center" alt="" />
+      <div className="md:w-[1000px] md:max-h-[85vh] md:mt-10 rounded-lg md:flex md:bg-white md:overflow-hidden">
         <form
           onSubmit={handleFormSubmit}
           className="w-full mx-auto bg-transparent p-8 text-white  md:w-[40%] md:text-black md:auth-form "
@@ -117,7 +118,7 @@ const LoginForm = () => {
         </form>
         <div className="bg-dark-100/75 -z-10 w-full h-screen absolute top-0 left-0 md:hidden"></div>
         <img
-          src="/social.webp"
+          src="/signin.webp"
           className="w-full md:z-10 h-screen object-cover object-center opacity-7 -z-20 absolute top-0 left-0 md:static md:w-1/2 md:h-full "
           alt=""
         />
