@@ -11,6 +11,7 @@ export default {
         pacifico: "Pacifico",
         mont: "Montserrat",
         opensans: "Open Sans",
+        urbanist:"Urbanist"
       },
       colors: {
         dark: {

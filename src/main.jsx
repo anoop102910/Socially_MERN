@@ -10,6 +10,7 @@ import "@fontsource/pacifico"
 import "@fontsource/montserrat"
 import "@fontsource/open-sans"
 import "@fontsource/roboto"
+import "@fontsource/urbanist"
 
 store.dispatch(checkAuthentication());
 

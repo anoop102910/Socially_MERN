@@ -52,12 +52,13 @@ const Signup = () => {
   };
 
   let style = {
-    input:
-      "mt-4 md:mt-1 md:text-sm rounded-md p-2 max-[640px]:placeholder:text-white  bg-white md:bg-transparent md:border-b md:border-black md:focus:shadow-md  md:rounded-none max-[640px]:bg-opacity-30 w-full outline-none pl-2 text-base test:bg-dark-300 test:border-slate-400 focus:shadow-md focus:border-solid focus:border focus:border-white focus:rounded-md focus:border-ridge",
+    // input:
+      // "mt-4 m/d:mt-1 md:text-sm rounded-md p-2 max-[640px]:placeholder:text-white  bg-white md:bg-transparent md:border-b md:border-black md:focus:shadow-md  md:rounded-none max-[640px]:bg-opacity-30 w-full outline-none pl-2 text-base test:bg-dark-300 test:border-slate-400 focus:shadow-md focus:border-solid focus:border focus:border-white focus:rounded-md focus:border-ridge",
+      input:"mt-2 rounded-lg block border w-full py-2 pl-3 outline-1 outline-blue-400 ring-1 ring-white text-slate-700"
   };
 
   return (
-    <div className="mx-auto text-black relative min-h-screen w-full flex justify-center items-center ">
+    <div className="mx-auto font-urbanist text-black relative min-h-screen w-full flex justify-center items-center ">
       <img src="signup.webp" className="absolute max-sm:hidden inset w-full h-screen object-cover filter brightness-50 -z-[1000] opacity-80 bg-blend-darken object-center" alt="" />
 
       <div className="md:w-[1000px] md:h-[560px] md:mt-16 rounded-lg md:flex md:bg-white md:overflow-hidden">
@@ -171,7 +172,7 @@ const Signup = () => {
             {loading ? "Signing in..." : "Sign in"}
           </button>
 
-          <span className="text-sm block text-center mt-6">
+          <span className="text-sm block text-center mt-4">
             Already have an account?
             <Link to={"/signin"} className="text-blue-500 ml-4" href="">
               Sign in

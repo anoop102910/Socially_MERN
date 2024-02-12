@@ -26,7 +26,7 @@ function PostCard({ className, post }) {
   }
 
   return (
-    <div className={`bg-white py-4 md:p-4 rounded-md text-gray-700 shadow-md test:bg-dark-200 test:text-white ${className}`}>
+    <div className={`bg-white py-4 md:p-4 md:rounded-md text-gray-700 shadow-md test:bg-dark-200 test:text-white ${className}`}>
       <div className="flex justify-between px-2">
         <div className="flex items-center">
           <ConnectionProfile w={'3rem'} src={createdBy.profileImage}/>

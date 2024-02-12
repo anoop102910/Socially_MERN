@@ -4,6 +4,7 @@ import { api } from "./api";
 const initialState = {
   posts: [],
   status: "idle",
+  createPostStatus:"idle",
   error: null,
 };
 
@@ -88,14 +89,14 @@ const postSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(createPost.pending, (state, action) => {
-        state.status = "loading";
+        state.createPostStatus = "loading";
       })
       .addCase(createPost.fulfilled, (state, action) => {
-        state.status = "success";
+        state.createPostStatus = "success";
         state.posts.unshift(action.payload);
       })
       .addCase(createPost.rejected, (state, action) => {
-        state.status = "failure";
+        state.createPostStatus = "failure";
       })
       .addCase(deletePost.pending, (state, action) => {
         state.status = "loading";

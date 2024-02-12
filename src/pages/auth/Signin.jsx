@@ -53,13 +53,15 @@ const LoginForm = () => {
       "mt-4 rounded-md p-2 max-[640px]:placeholder:text-white  bg-white md:bg-transparent md:border-b md:border-black md:focus:shadow-md  md:rounded-none max-[640px]:bg-opacity-30 w-full outline-none pl-2 text-base test:bg-dark-300 test:border-slate-400 focus:shadow-md focus:border-solid focus:border focus:border-white focus:rounded-md focus:border-ridge",
   };
 
+
+
   return (
-    <div className="mx-auto text-black relative min-h-screen w-full flex justify-center items-center  ">
+    <div className="mx-auto  font-urbanist text-black relative min-h-screen w-full flex justify-center items-center  ">
       <img src="signin.webp" className="max-sm:hidden absolute inset w-full h-screen object-cover filter brightness-50 -z-[1000] opacity-80 bg-blend-darken object-center" alt="" />
-      <div className="md:w-[1000px] md:max-h-[85vh] md:mt-10 rounded-lg md:flex md:bg-white md:overflow-hidden">
+      <div className="md:w-[1000px] md:max-h-[85vh] md:mt-10 rounded-lg md:flex md:bg-white   md:overflow-hidden">
         <form
           onSubmit={handleFormSubmit}
-          className="w-full mx-auto bg-transparent p-8 text-white  md:w-[40%] md:text-black md:auth-form "
+          className="w-full mx-auto bg-transparent  p-8 text-white  md:w-[40%] md:text-black md:auth-form "
         >
           <h2 className="text-2xl font-semibold text-center mb-16 ">Signin to your account</h2>
 
@@ -74,8 +76,9 @@ const LoginForm = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className={style.input}
-              placeholder="Enter your email"
+              // className={style.input}
+              className=" mt-2 rounded-lg block border w-full py-2 pl-3 outline-1 outline-blue-400 ring-1 ring-white text-slate-700 "
+              placeholder="Eg. abhishek12@gmail.com"
               required
             />
           </div>
@@ -91,8 +94,10 @@ const LoginForm = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className={style.input}
-              placeholder="Enter your password"
+              // className={style.input}
+              className=" mt-4 rounded-lg block border w-full py-2 pl-3 outline-1 outline-blue-400 ring-1 ring-white text-slate-700 "
+
+              placeholder="Eg. sdak92j2q39ua3da98"
               required
             />
           </div>
@@ -104,7 +109,7 @@ const LoginForm = () => {
           )}
           <button
             type="submit"
-            className="w-full bg-blue-500  text-white p-2 rounded hover:bg-blue-600 focus:outline-none focus:shadow-outline md:bg-black md:hover:bg-black"
+            className="w-full mt-10 bg-blue-500  text-white p-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:shadow-outline md:bg-black md:hover:bg-black"
           >
             {loading ? "Signing in..." : "Sign in"}
           </button>
