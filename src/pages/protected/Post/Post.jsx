@@ -1,18 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PostsContainer from "./PostsContainer";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../../../slice/postSlice";
 import { PostLoader } from "./PostLoader";
 import { checkAuthentication } from "../../../slice/authSlice";
 import PostForm from "../../../components/PostForm";
-
+import { useInView } from "react-intersection-observer";
 function Post() {
   const status = useSelector(state => state.post.status);
+  const [ref, inView] = useInView({});
+  // const [page, setPage] = useState(0);
   const dispatch = useDispatch();
-  
+
+  /* useEffect(() => {
+    if (inView) {
+      dispatch(fetchPosts(page));
+      setPage(prev => prev + 1);
+    }
+  }, [inView]); */
+
   useEffect(() => {
-    dispatch(checkAuthentication());
-    dispatch(fetchPosts());
+      dispatch(fetchPosts(1));
+      dispatch(checkAuthentication());
   }, []);
 
   if (status == "loading") return <Loader />;
@@ -22,6 +31,9 @@ function Post() {
       <div className="max-w-[550px] ">
         <PostForm className={"mb-4"} />
         <PostsContainer />
+       {/*  <div ref={ref} className="w-full bg-green-50 text-black h-[20vh] mb-10">
+          Loadinging more
+        </div> */}
       </div>
     </>
   );

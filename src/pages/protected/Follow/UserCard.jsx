@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { api } from "../../../slice/api";
+import Avatar from "../../../components/Avatar";
+import { Link } from "react-router-dom";
 
 function UserCard({ user }) {
   const [requestSent, setRequestSent] = useState(false);
@@ -9,7 +11,7 @@ function UserCard({ user }) {
       const response = await api.post(`/api/follower/follow/${user._id}`);
       console.log(response);
       setRequestSent(true);
-      toast.success('Request sent')
+      toast.success("Request sent");
     } catch (error) {
       console.log(error);
       toast.error("Some error occured");
@@ -27,13 +29,20 @@ function UserCard({ user }) {
   }
   return (
     <div className="flex items-center justify-between mb-4 ">
-      <div className="flex items-center">
-        <img className="w-12 object-contain object-center rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4HbqZyTk4fRBYWt-7H6ubyM0ex6A8WyVunKD2mqOAmA&s" alt="" />
-        <span className="text-gray-600 test:text-slate-200 ml-6">{user.firstName + " " + user.lastName}</span>
-      </div>
+      <Link to={`/user/${user._id}`}>
+        <div className="flex items-center">
+          <Avatar w={"3rem"} src={user.profileImage} name={user.firstName + " " + user.lastName} />
+          <span className="text-gray-600 test:text-slate-200 ml-6">
+            {user.firstName + " " + user.lastName}
+          </span>
+        </div>
+      </Link>
+
       <button
         onClick={!requestSent ? handleFollow : handleUnFollow}
-        className={`text-[0.775rem] px-4 py-2 rounded-md ${requestSent ? "bg-green-600 " : "bg-blue-500 "}  text-white`}
+        className={`text-[0.775rem] px-4 py-2 rounded-md ${
+          requestSent ? "bg-green-600 " : "bg-blue-500 "
+        }  text-white`}
       >
         {requestSent ? "Following" : "Follow"}
       </button>

@@ -36,7 +36,6 @@
   outline: none;
   padding-left: 0.5rem;
   font-size: 0.9rem;
-  /* @apply test:bg-dark-300 test:border-slate-400; */
 }
 
 .auth-label {
@@ -51,7 +50,6 @@
   outline: none;
   padding-left: 0.5rem;
   font-size: 0.9rem;
-  /* @apply test:bg-dark-300 test:border-slate-400; */
 }
 
 .auth-input:focus {
@@ -78,14 +76,6 @@
   background-size: 200% 100%;
   animation: 1.5s shine linear infinite;
 }
-/* @media (prefers-color-scheme: dark) {
-  .loader {
-    background: linear-gradient(110deg, #333333 8%, #222222 18%, #333333 33%);
-    animation: 1.5s shine linear infinite;
-    border-radius: 5px;
-    background-size: 200% 100%;
-  }
-} */
 
 @keyframes shine {
   to {
@@ -103,11 +93,35 @@
 }
 
 .appear-animation {
-  animation: appear-animation;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
+  animation: appear-animation 0.5s forwards;
 }
 
+.animate-scale {
+  animation: animate-scale 0.2s forwards;
+}
+
+.animate-scale-y{
+  animation: animate-scale-y 0.2s forwards;
+}
+
+@keyframes animate-scale {
+  from {
+    scale: 0;
+  }
+  to {
+    scale: 1;
+  }
+}
+
+
+@keyframes animate-scale-y {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
 
 @keyframes appear-animation {
   from {
@@ -118,21 +132,19 @@
   }
 }
 
-
 ::-webkit-scrollbar {
-  width: 8px; 
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  /* background-color: #f1f1f1;  */
   background-color: lightgray;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #999; 
-  border-radius: 6px; 
+  background-color: #999;
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #555; 
+  background-color: #555;
 }

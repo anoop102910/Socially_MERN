@@ -1,15 +1,16 @@
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import AuthLayout from "./pages/auth/AuthLayout";
 import Layout from "./pages/protected/Layout";
 import AppLayout from "./AppLayout";
 import ProtectedLayout from "./pages/protected/ProtectedLayout";
 import Post from "./pages/protected/Post/Post";
 import UserList from "./pages/protected/Follow/UserList";
-import UserProfile from "./pages/protected/Profile/UserProfile";
 import Signin from "./pages/auth/Signin";
 import Signup from "./pages/auth/Signup";
+import UserProfile1 from "./pages/protected/Profile/UserProfile";
+import "react-toastify/dist/ReactToastify.css";
+
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
             <Route path="/" element={<Layout />}>
               <Route path="/" element={<Post />} />
               <Route path="/user" element={<UserList />} />
-              <Route path="/profile" element={<UserProfile />} />
+              <Route path="/user/:id" element={<UserProfile1 />} />
             </Route>
           </Route>
           <Route path="/" element={<AuthLayout />}>
