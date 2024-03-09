@@ -5,12 +5,11 @@ import Layout from "./pages/protected/Layout";
 import AppLayout from "./AppLayout";
 import ProtectedLayout from "./pages/protected/ProtectedLayout";
 import Post from "./pages/protected/Post/Post";
-import UserList from "./pages/protected/Follow/UserList";
 import Signin from "./pages/auth/Signin";
 import Signup from "./pages/auth/Signup";
 import UserProfile1 from "./pages/protected/Profile/UserProfile";
 import "react-toastify/dist/ReactToastify.css";
-
+import UserList from "./pages/protected/Follow/UserList";
 
 function App() {
   return (

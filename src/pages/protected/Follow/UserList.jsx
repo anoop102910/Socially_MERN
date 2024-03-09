@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { api } from "../../../slice/api"
+import { api } from "../../../slice/api";
 import UserCard from "./UserCard";
 import UserLoader from "./UserLoader";
+import { useInView } from "react-intersection-observer";
 
 function UserList() {
   const [users, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [ref, inView] = useInView();
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     async function run() {
       setLoading(true);
       try {
-        const userData = await api.get("/api/user");
+        const userData = await api.get(`/api/user?q=not-following&page=${page}`);
         let userList = userData.data;
-        const connectionsData = await api.get("/api/follower");
-        const connections = connectionsData.data;
-        userList = userList.filter(user => !connections.some(connection => connection.connection._id == user._id));
         setUser(userList);
+        setPage(prev=>prev+1);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -25,6 +26,23 @@ function UserList() {
     }
     run();
   }, []);
+
+  useEffect(() => {
+    async function run() {
+      try {
+        const userData = await api.get(`/api/user?q=not-following&page=${page}`);
+        let userList = userData.data;
+        setUser(prev=>[...prev, ...userList]);
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+      }
+    }
+    if(inView && page>1){
+      run();
+      setPage(prev => prev + 1);
+    }
+  }, [inView]);
 
   if (loading) return <UserLoader />;
 
@@ -38,9 +56,14 @@ function UserList() {
         ) : (
           <ul>
             {users?.map(user => (
-              <UserCard key={user.id} user={user} />
+              <UserCard key={user._id} user={user} />
             ))}
           </ul>
+        )}
+        {users?.length > 8 && (
+           <div ref={ref} className="w-full bg-trasnsparent flex justify-center items-center text-black h-[20vh] mb-10">
+           <img src="spinner.svg" alt="" />
+       </div>
         )}
       </div>
     </>

@@ -11,7 +11,7 @@ function UserCard({ user }) {
       const response = await api.post(`/api/follower/follow/${user._id}`);
       console.log(response);
       setRequestSent(true);
-      toast.success("Request sent");
+      toast.success("User followed successfully");
     } catch (error) {
       console.log(error);
       toast.error("Some error occured");
@@ -43,7 +43,7 @@ function UserCard({ user }) {
         className={`text-[0.775rem] px-4 py-2 rounded-md ${
           requestSent ? "bg-green-600 " : "bg-blue-500 "
         }  text-white`}
-      >
+      > 
         {requestSent ? "Following" : "Follow"}
       </button>
     </div>

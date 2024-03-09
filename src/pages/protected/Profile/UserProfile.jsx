@@ -7,6 +7,10 @@ import { fetchUserPosts } from "../../../slice/postSlice";
 import useUserProfile from "../../../hooks/useUserProfie";
 import Avatar from "../../../components/Avatar";
 import ImageUploader from "../../../components/ImageUploader";
+import Profile from "../../../components/Profile";
+import { api } from "../../../slice/api";
+import { toast } from "react-toastify";
+import ProfileLoader from "./ProfileLoader";
 
 export default function UserProfile1() {
   const myId = useSelector(state => state.auth.userId);
@@ -20,15 +24,53 @@ export default function UserProfile1() {
   const isUser = myId === userId;
   const bgoptions = ["red", "orange", "yellow", "green", "blue", "indigo", "purple", "pink"];
   const [bg, setBg] = useState(null);
+  const [profile, setProfile] = useState(null);
+
+  async function handleFollow() {
+    try {
+      const response = await api.post(`/api/follower/follow/${profile._id}`);
+      console.log(response);
+      toast.success("User followed successfully");
+      setProfile(prev => ({ ...prev, isFollowed: true }));
+    } catch (error) {
+      console.log(error);
+      toast.error("Some error occured");
+    }
+  }
+  async function handleUnFollow() {
+    try {
+      const response = await api.post(`/api/follower/unfollow/${profile._id}`);
+      setProfile(prev => ({ ...prev, isFollowed: false }));
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+      toast.error("Some error occured");
+    }
+  }
 
   useEffect(() => {
+    if (!isUser) {
+      (async () => {
+        try {
+          const response = await api.get(`/api/user/${userId}`);
+          console.log(response.data);
+          setProfile(response.data);
+        } catch (error) {
+          console.log(error);
+        }
+      })();
+    }
     dispatch(fetchUserPosts(userId));
     setBg(bgoptions[Math.floor(Math.random() * bgoptions.length)]);
   }, [userId]);
 
   const [user] = useUserProfile(userId);
-
-  if (status == "loading") return <div className="text-black text-3xl">Loading...</div>;
+  if (status == "loading ")
+    return (
+      <div className="text-black text-3xl">
+        <ProfileLoader />
+      </div>
+    );
 
   if (status == "error") return <div className="text-red-500 text-3xl">{error}</div>;
 
@@ -62,17 +104,35 @@ export default function UserProfile1() {
                   </div>
                 </>
               )}
-              <Avatar
-                name={user.firstName + " " + user.lastName}
-                src={user.profileImage}
-                w={"8rem"}
-                className={"p-1 bg-blue-600 "}
-              />
+              {isUser ? (
+                <Profile w={"8rem"} className={"p-1 bg-blue-600 "} />
+              ) : (
+                <Avatar
+                  w={"8rem"}
+                  src={profile?.profileImage}
+                  name={profile?.firstName + " " + profile?.lastName}
+                />
+              )}
             </div>
           </div>
         </div>
-
-        <div className="space-y-3">
+        {!isUser && profile && (
+          <div className="flex items-center justify-center gap-10 -mt-16">
+            <button
+              onClick={profile.isFollowed ? handleUnFollow : handleFollow}
+              className="px-4 py-2 rounded-md bg-green-500"
+            >
+              {profile.isFollowed ? "Unfollow" : "Follow"}
+            </button>
+            <div className="text-black">
+              Followers : <span className="text-xl text-violet-500"> {profile.followersCount}</span>
+            </div>
+            <div className="text-black">
+              Following : <span className="text-xl text-violet-500"> {profile.followingCount}</span>
+            </div>
+          </div>
+        )}
+        <div className="space-y-3 mt-16">
           {posts.length != 0 &&
             posts.map(post => {
               return (

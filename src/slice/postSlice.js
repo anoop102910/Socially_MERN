@@ -22,6 +22,20 @@ export const fetchPosts = createAsyncThunk(
   }
 );
 
+export const fetchMorePosts = createAsyncThunk(
+  "posts/fetchMorePosts",
+  async (page, { rejectWithValue }) => {
+    try {
+      console.log(page);
+      const response = await api.get(`/api/post?page=${page}`);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const fetchUserPosts = createAsyncThunk(
   "posts/fetchUserPosts",
   async (id, { rejectWithValue }) => {
@@ -127,6 +141,20 @@ export const fetchComments = createAsyncThunk(
   }
 );
 
+export const deleteComment = createAsyncThunk(
+  "posts/deleteComment",
+  async (commentId, { rejectWithValue }) => {
+    try {
+      const response = await api.delete(`/api/comment/${commentId}`);
+      console.log(response.data);
+      // return commentId;
+      return response.data.comment;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const postSlice = createSlice({
   name: "post",
   initialState,
@@ -142,6 +170,15 @@ const postSlice = createSlice({
       })
       .addCase(fetchPosts.rejected, (state, action) => {
         state.status = "failure";
+        state.error = action.error.message;
+      })
+      .addCase(fetchMorePosts.fulfilled, (state, action) => {
+        state.status = "success";
+        state.posts.push(...action.payload);
+      })
+      .addCase(fetchMorePosts.rejected, (state, action) => {
+        state.status = "failure";
+        toast.error("Something went wrong fetching posts");
         state.error = action.error.message;
       })
       .addCase(fetchUserPosts.pending, state => {
@@ -176,6 +213,7 @@ const postSlice = createSlice({
         state.status = "failure";
       })
       .addCase(likePost.fulfilled, (state, action) => {
+        console.log(action.payload)
         const post = state.posts.find(post => post._id === action.payload.postId);
         post.liked = true;
         post.likeCount++;
@@ -191,6 +229,7 @@ const postSlice = createSlice({
         console.log(post);
         if (!post.comments) post.comments = [];
         post.comments.unshift(action.payload);
+        post.commentCount++;
       })
       .addCase(fetchComments.fulfilled, (state, action) => {
         let { postId, comments } = action.payload;
@@ -198,7 +237,13 @@ const postSlice = createSlice({
         console.log(post);
         if (!post.comments) post.comments = [];
         post.comments = comments;
+      })
+      .addCase(deleteComment.fulfilled, (state, action) => {
+        const post = state.posts.find(post => post._id === action.payload.postId);
+        post.commentCount--;
+        post.comments = post.comments.filter(comment => comment._id !== action.payload._id);
       });
+
   },
 });
 

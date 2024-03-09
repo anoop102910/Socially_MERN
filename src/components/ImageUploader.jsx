@@ -35,7 +35,7 @@ export default function ImageUploader({ className, onClose }) {
         clearForm();
         setLoading(false);
         toast.success("Image uploaded successfully");
-        window.location.reload(true);
+        navigate("/")
       } catch (error) {
         setLoading(false);
         console.log(error.message);

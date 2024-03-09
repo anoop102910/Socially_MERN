@@ -61,7 +61,7 @@ const Signup = () => {
     <div className="mx-auto font-urbanist text-black relative min-h-screen w-full flex justify-center items-center ">
       <img src="signup.webp" className="absolute max-sm:hidden inset w-full h-screen object-cover filter brightness-50 -z-[1000] opacity-80 bg-blend-darken object-center" alt="" />
 
-      <div className="md:w-[1000px] md:h-[560px] md:mt-16 rounded-lg md:flex md:bg-white md:overflow-hidden">
+      <div className="md:w-[1000px] md:h-[580px] md:mt-16 rounded-lg md:flex md:bg-white md:overflow-hidden">
         <img
           src="/signup.webp"
           className="w-full md:z-10 h-screen object-cover object-center opacity-7 -z-20 absolute top-0 left-0 md:static md:w-1/2 md:h-full "
